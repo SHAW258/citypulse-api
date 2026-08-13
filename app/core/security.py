@@ -29,10 +29,10 @@ def verify_password(password: str, password_hash: str) -> bool:
     return password_hasher.verify(password, password_hash)
 
 
-def password_needs_rehash(password_hash: str) -> bool:
-    """Identify hashes that should be upgraded after a library configuration change."""
+def verify_and_update_password(password: str, password_hash: str) -> tuple[bool, str | None]:
+    """Verify password and return updated hash if rehashing is recommended."""
 
-    return password_hasher.needs_rehash(password_hash)
+    return password_hasher.verify_and_update(password, password_hash)
 
 
 def _issue_token(

@@ -13,8 +13,7 @@ from app.core.security import (
     create_refresh_token,
     decode_token,
     hash_password,
-    password_needs_rehash,
-    verify_password,
+    verify_and_update_password,
 )
 from app.models.refresh_token import RefreshToken
 from app.models.user import User
@@ -66,16 +65,17 @@ class AuthService:
         user_agent: str | None,
     ) -> TokenResponse:
         user = await self.users.get_by_email(str(payload.email))
-        password_matches = user is not None and verify_password(
-            payload.password,
-            user.password_hash,
+        password_matches, new_hash = (
+            verify_and_update_password(payload.password, user.password_hash)
+            if user is not None
+            else (False, None)
         )
         if user is None or not password_matches or not user.is_active:
             # Deliberately generic to avoid account enumeration.
             raise AuthenticationError("Incorrect email or password")
 
-        if password_needs_rehash(user.password_hash):
-            user.password_hash = hash_password(payload.password)
+        if new_hash is not None:
+            user.password_hash = new_hash
         await self.users.record_login(user, _utc_now())
         response = await self._issue_token_pair(user, client_ip=client_ip, user_agent=user_agent)
         await self.session.commit()
