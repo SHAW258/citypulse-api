@@ -1,6 +1,27 @@
 # CityPulse API
 
-CityPulse is a privacy-conscious mobility and local-life analytics backend built with **FastAPI**, **asynchronous SQLAlchemy 2.0**, **MySQL 8.4**, **JWT authentication**, and a clean layered architecture (Routers → Services → Repositories).
+> **Privacy-conscious mobility and local-life analytics backend built with modern asynchronous Python.**
+
+---
+
+### 🛠️ Software, Tools & Tech Stack Versions (Quick Reference)
+
+| Category | Software / Technology | Target / Tested Version | Role & Usage |
+|---|---|---|---|
+| **Runtime** | **Python** | `3.12+` / `3.14.6` | Modern Python asynchronous runtime environment |
+| **API Framework** | **FastAPI** | `^0.128.0` | Asynchronous REST API framework & OpenAPI engine |
+| **ASGI Server** | **Uvicorn** | `^0.40.0` | High-throughput asynchronous HTTP/ASGI server with auto-reload |
+| **Database** | **MySQL Server** | `8.4 LTS` (or `8.0+`) | Relational database storage engine |
+| **Containerization** | **Docker & Compose**| `Compose v2+` | Containerized MySQL 8.4 service orchestration |
+| **ORM Engine** | **SQLAlchemy** | `^2.0.46` | Async 2.0 ORM with mapped types and relationship cascades |
+| **Database Driver** | **asyncmy** | `^0.2.10` | Cython-accelerated asynchronous MySQL protocol driver |
+| **Database Migrations**| **Alembic** | `^1.18.0` | Database schema versioning & asynchronous migration runner |
+| **Data Validation** | **Pydantic v2** | `^2.12.0` | Schema validation, DTOs & `pydantic-settings` environment loader |
+| **Authentication** | **PyJWT** | `^2.11.0` | Cryptographic JSON Web Token (JWT) encode/decode/rotation |
+| **Password Hashing**| **pwdlib [argon2]** | `^0.3.0` | Argon2id non-reversible password hashing |
+| **Testing Suite** | **pytest & pytest-asyncio**| `^9.0.0` / `^1.3.0` | Asynchronous unit, security, and integration testing |
+| **HTTP Test Client**| **HTTPX** | `^0.28.0` | Async HTTP client for test runners |
+| **Linter & Formatter**| **Ruff** | `^0.14.0` | Lightning-fast Python code linting, formatting & rule checks |
 
 ---
 
