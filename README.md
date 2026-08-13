@@ -339,3 +339,12 @@ ruff check .
 # Format code
 ruff format .
 ```
+
+---
+
+## 📄 License & Proprietary Notice
+
+Copyright © 2026 SHAW258. All rights reserved.
+
+This project and its source code are **Proprietary and Confidential**. Public viewing of this repository is permitted solely for demonstration, inspection, and portfolio evaluation. Unauthorized copying, cloning for derivation, distribution, reproduction, or commercial deployment without prior written permission from the copyright holder is strictly prohibited. See the [LICENSE](LICENSE) file for complete terms.
+
