@@ -1,77 +1,74 @@
 <div align="center">
 
-# 🏙️ CityPulse — Privacy-Conscious Mobility & Urban Analytics
+# 🏙️ CityPulse — Privacy-Conscious Mobility & Urban Analytics API
 
-[![Python](https://img.shields.io/badge/Python-3.14%20%7C%203.12+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![Render Live](https://img.shields.io/badge/Render-Live%20Production-24c8db?style=for-the-badge&logo=render&logoColor=white)](https://citypulse-api-tjpr.onrender.com/api/v1/docs)
+[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.12%20%7C%203.14-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.128+-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Uvicorn](https://img.shields.io/badge/Uvicorn-0.40+-499848?style=flat&logo=gunicorn&logoColor=white)](https://www.uvicorn.org/)
-[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-D71F00?style=flat&logo=sqlalchemy&logoColor=white)](https://www.sqlalchemy.org/)
-[![asyncmy](https://img.shields.io/badge/asyncmy-0.2.10+-005C84?style=flat)](https://github.com/long2ice/asyncmy)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0%20Async-D71F00?style=flat&logo=sqlalchemy&logoColor=white)](https://www.sqlalchemy.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL%20(Live)-3ECF8E?style=flat&logo=supabase&logoColor=white)](https://supabase.com/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.4%20LTS-4479A1?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![Docker](https://img.shields.io/badge/Docker-Compose%20v2-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
-[![Pydantic](https://img.shields.io/badge/Pydantic-v2.12+-E92063?style=flat&logo=pydantic&logoColor=white)](https://docs.pydantic.dev/)
-[![PyJWT](https://img.shields.io/badge/PyJWT-2.11+-000000?style=flat&logo=jsonwebtokens&logoColor=white)](https://pyjwt.readthedocs.io/)
-[![Argon2](https://img.shields.io/badge/Argon2id-pwdlib-8A2BE2?style=flat)](https://github.com/frankie567/pwdlib)
-[![Pytest](https://img.shields.io/badge/Pytest-9.0+-0A9EDC?style=flat&logo=pytest&logoColor=white)](https://pytest.org/)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Argon2](https://img.shields.io/badge/Argon2id-Cryptographic%20Hashing-8A2BE2?style=flat)](https://github.com/frankie567/pwdlib)
+[![Pytest](https://img.shields.io/badge/Pytest-100%25%20Passing-0A9EDC?style=flat&logo=pytest&logoColor=white)](https://pytest.org/)
 [![Ruff](https://img.shields.io/badge/Ruff-0.14+-D7FF64?style=flat&logo=ruff&logoColor=black)](https://docs.astral.sh/ruff/)
 [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red?style=flat)](LICENSE)
 
-*An enterprise-grade, privacy-conscious mobility and urban analytics backend with Argon2id authentication, rotating JWT tokens, spatio-temporal location tracking, and statistical outlier detection.*
+*An enterprise-grade, privacy-conscious mobility and urban analytics backend with Argon2id cryptographic authentication, rotating single-use JWT tokens, spatio-temporal journey tracking, and statistical outlier detection.*
 
 <br/>
 
-[Architecture](#-system-architecture-diagram) • [Database Schema](#-database-schema--er-diagram) • [Getting Started](#-quick-start--setup) • [API Reference](#-api-endpoints-overview) • [Detailed Setup Guide](SETUP.md) • [Tech Stack](#-technology-stack)
+[Live API Docs (Render)](#-live-deployments--interactive-docs) • [Pre-Seeded Accounts](#-pre-seeded-demo-credentials) • [Architecture](#-system-architecture) • [Database Schema](#-database-schema--er-diagram) • [API Endpoints](#-api-endpoints-reference) • [Setup Guide](#-local-quick-start) • [Deployment](#-cloud-deployment-guide)
 
 </div>
 
 ---
 
-## 📑 Table of Contents
+## 🌐 Live Deployments & Interactive Docs
 
-- [Technology Stack](#-technology-stack)
-- [System Architecture Diagram](#-system-architecture-diagram)
-- [Database Schema & ER Diagram](#-database-schema--er-diagram)
-- [Quick Start & Setup](#-quick-start--setup)
-- [API Endpoints Overview](#-api-endpoints-overview)
-- [Security Model & Baseline](#-security-model--baseline)
-- [Project Directory Structure](#-project-directory-structure)
-- [Testing & Quality Assurance](#-testing--quality-assurance)
-- [Detailed Setup Guide](SETUP.md)
+| Deployment Platform | Status | Interactive Swagger Docs | Health Probe | OpenAPI Spec |
+| :--- | :---: | :--- | :--- | :--- |
+| **Render Production (Supabase)** | 🟢 **Live** | **[Live Swagger UI](https://citypulse-api-tjpr.onrender.com/api/v1/docs)** | `GET` **[/health](https://citypulse-api-tjpr.onrender.com/health)** | **[/openapi.json](https://citypulse-api-tjpr.onrender.com/api/v1/openapi.json)** |
+| **PythonAnywhere WebApp** | 🟢 **Live** | **[PythonAnywhere UI](https://indrada.pythonanywhere.com/api/v1/docs)** | `GET` **[/health](https://indrada.pythonanywhere.com/health)** | **[/openapi.json](https://indrada.pythonanywhere.com/api/v1/openapi.json)** |
 
 ---
 
-## 🚀 Technology Stack
+## 🔑 Pre-Seeded Demo Credentials
 
-| Layer / Concern | Technology | Version / Spec | Purpose & Justification |
-|---|---|---|---|
-| **Web Framework** | [FastAPI](https://fastapi.tiangolo.com/) | `>=0.128` | High-performance async REST API with automatic OpenAPI documentation and dependency injection. |
-| **ASGI Server** | [Uvicorn](https://www.uvicorn.org/) | `>=0.40` | Lightning-fast async server with standard protocol support and live-reload worker management. |
-| **ORM & Persistence** | [SQLAlchemy](https://www.sqlalchemy.org/) | `>=2.0.46` | Modern async 2.0 syntax with mapped columns, strong typing, and relationship cascading. |
-| **Async DB Driver** | [asyncmy](https://github.com/long2ice/asyncmy) | `>=0.2.10` | High-throughput asynchronous driver for MySQL using asyncio and Cython extensions. |
-| **Database** | [MySQL](https://www.mysql.com/) | `8.4 LTS` | Relational storage engine with native JSON, transactional guarantees, and strict constraints. |
-| **Schema Migrations**| [Alembic](https://alembic.sqlalchemy.org/) | `>=1.18` | Version-controlled, idempotent database schema migrations with async context support. |
-| **Data Validation** | [Pydantic v2](https://docs.pydantic.dev/) | `v2+` / `pydantic-settings` | Strict schema validation, environment configuration parsing, and input sanitization. |
-| **Authentication** | [PyJWT](https://pyjwt.readthedocs.io/) | `>=2.11` | Cryptographic JWT token encoding, verification, and rotation. |
-| **Password Hashing** | [pwdlib](https://github.com/frankie567/pwdlib) | `[argon2] >=0.3` | State-of-the-art Argon2id cryptographic hashing to resist GPU/ASIC attacks. |
-| **Testing** | [pytest](https://pytest.org/) & [pytest-asyncio](https://github.com/pytest-dev/pytest-asyncio) | `>=9.0` / `>=1.3` | Async unit, security, and integration test suite with fixture scopes. |
-| **Code Quality** | [Ruff](https://docs.astral.sh/ruff/) | `>=0.14` | High-speed linter and formatter enforcing modern Python idioms. |
+The live production Supabase database comes pre-seeded with **160+ realistic mobility journeys, saved locations, and user accounts**:
+
+| Account Name | Email / Username | Password | Seeded Data Volume |
+| :--- | :--- | :--- | :--- |
+| **Alice Urban (Primary)** | `alice_urban@example.com` | `StrongPassword!2026` | 26 Trips, 7 Saved Locations |
+| **Bob Commuter** | `bob_commuter@example.com` | `StrongPassword!2026` | 28 Trips, 6 Saved Locations |
+| **Carol Cyclist** | `carol_cyclist@example.com` | `StrongPassword!2026` | 24 Trips, 5 Saved Locations |
+| **David Transit** | `david_transit@example.com` | `StrongPassword!2026` | 26 Trips, 6 Saved Locations |
+| **Eva Walker** | `eva_walker@example.com` | `StrongPassword!2026` | 26 Trips, 7 Saved Locations |
 
 ---
 
-## 🏛 System Architecture Diagram
+## 🚀 Key Features & Highlights
 
-The CityPulse API follows a strict separation of concerns with unidirectional dependency flow:
+- **Dual-Engine Async Persistence**: Seamless cross-dialect support for **PostgreSQL (Supabase via `asyncpg`)** and **MySQL 8.4 LTS (via `asyncmy`)** with UTC-aware datetime serialization.
+- **Enterprise Authentication**: State-of-the-art **Argon2id password hashing** paired with **rotating single-use JWT refresh tokens** featuring automated token-reuse compromise detection.
+- **Privacy-First Data Segregation**: Strict multi-tenant isolation where all queries, mutations, and analytics are bounded to the authenticated `user_id`.
+- **Advanced Mobility Analytics**: Aggregated journey analytics, transportation mode breakdowns (Walk, Bike, Bus, Train, Metro, Car, Auto, Ride Share), time-series daily distance, and interquartile statistical speed/distance anomaly detection.
+- **Defense-in-Depth Middleware**: Sliding-window IP rate limiting, strict CORS configuration, TrustedHost verification, and hardened security headers (`Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`).
+- **Synchronous WSGI Adapter (`SyncASGIMiddleware`)**: High-performance synchronous runner in [`wsgi.py`](wsgi.py) enabling zero-dependency deployment under standard single-threaded WSGI servers like PythonAnywhere uWSGI.
+
+---
+
+## 🏛 System Architecture
 
 ```mermaid
 flowchart TD
-    Client["Client / Frontend App (Web / Mobile / CLI)"]
+    Client["Client App (Web / Mobile / CLI / Postman)"]
     
-    subgraph FastAPI_Application["FastAPI Application (ASGI / Uvicorn)"]
-        subgraph Middleware_Pipeline["Security & Transport Middleware"]
+    subgraph FastAPI_Application["FastAPI Application Layer (ASGI / Uvicorn / WSGI)"]
+        subgraph Middleware_Pipeline["Security & Transport Pipeline"]
             TrustedHost["TrustedHostMiddleware (Host Header Whitelist)"]
-            HTTPSRedirect["HTTPSRedirectMiddleware (SSL Enforcer)"]
             CORSMiddleware["CORSMiddleware (Strict Origin Whitelist)"]
-            SecurityMiddleware["RequestSecurityMiddleware (Rate Limiting, Size Checks, Headers)"]
+            SecurityMiddleware["RequestSecurityMiddleware (Rate Limiting, Payload Guards, Security Headers)"]
         end
         
         subgraph API_Routers["API Router Layer (/api/v1)"]
@@ -88,13 +85,13 @@ flowchart TD
         end
         
         subgraph Service_Layer["Business Logic Services"]
-            AuthService["AuthService (Password hashing, JWT issuing/rotating)"]
+            AuthService["AuthService (Argon2id hashing, JWT rotation)"]
             LocationService["LocationService (Ownership enforcement, Geo validation)"]
             TripService["TripService (Metrics computation, Trip validation)"]
-            AnalyticsService["AnalyticsService (Aggregations, Outlier detection)"]
+            AnalyticsService["AnalyticsService (Aggregations, Outlier math)"]
         end
         
-        subgraph Repository_Layer["Data Access Repositories"]
+        subgraph Repository_Layer["Data Access Layer (Repository Pattern)"]
             UserRepo["UserRepository"]
             LocationRepo["LocationRepository"]
             TripRepo["TripRepository"]
@@ -102,17 +99,18 @@ flowchart TD
         
         subgraph ORM_Engine["SQLAlchemy 2.0 Async Engine"]
             AsyncEngine["AsyncEngine / Connection Pool"]
-            AsyncMyDriver["asyncmy Cython Driver"]
+            AsyncPgDriver["asyncpg (PostgreSQL)"]
+            AsyncMyDriver["asyncmy (MySQL)"]
         end
     end
     
-    subgraph Persistence["Database Storage Layer"]
-        MySQL[("MySQL 8.4 Database")]
+    subgraph Persistence["Cloud & Local Database Storage"]
+        Supabase[("Supabase PostgreSQL (Cloud)")]
+        MySQL[("MySQL 8.4 (Local / Container)")]
     end
 
-    Client -->|HTTP Request| TrustedHost
-    TrustedHost --> HTTPSRedirect
-    HTTPSRedirect --> CORSMiddleware
+    Client -->|HTTPS Request| TrustedHost
+    TrustedHost --> CORSMiddleware
     CORSMiddleware --> SecurityMiddleware
     SecurityMiddleware --> API_Routers
     
@@ -134,15 +132,15 @@ flowchart TD
     TripRepo --> DBSession
     
     DBSession --> AsyncEngine
+    AsyncEngine --> AsyncPgDriver
     AsyncEngine --> AsyncMyDriver
+    AsyncPgDriver -->|Port 5432 / 6543| Supabase
     AsyncMyDriver -->|Port 3306| MySQL
 ```
 
 ---
 
 ## 📊 Database Schema & ER Diagram
-
-CityPulse models data around user ownership, privacy isolation, revocable tokens, saved locations, and recorded mobility trips.
 
 ```mermaid
 erDiagram
@@ -207,91 +205,149 @@ erDiagram
 
 ---
 
-## ⚡ Quick Start & Setup
+## 📡 API Endpoints Reference
 
-> 💡 *For a detailed installation walkthrough, prerequisites, and troubleshooting guide, please see [SETUP.md](SETUP.md).*
+All Version 1 routes are mounted under `/api/v1`:
 
-### 1. Set Up Environment & Install Dependencies
+| Domain | Method | Endpoint | Description | Auth Required |
+| :--- | :---: | :--- | :--- | :---: |
+| **System** | `GET` | `/health` | Application liveness probe | No |
+| **System** | `GET` | `/api/v1/docs` | Interactive Swagger UI Explorer | No |
+| **System** | `GET` | `/api/v1/openapi.json` | OpenAPI 3.1 JSON Schema specification | No |
+| **Auth** | `POST` | `/api/v1/auth/register` | Register new user account with unique email and username | No |
+| **Auth** | `POST` | `/api/v1/auth/login` | Authenticate credentials; issues JWT access + refresh tokens | No |
+| **Auth** | `POST` | `/api/v1/auth/refresh` | Rotate single-use refresh token & issue fresh access token | No |
+| **Auth** | `POST` | `/api/v1/auth/logout` | Revoke active refresh token session | Yes |
+| **Auth** | `GET` | `/api/v1/auth/me` | Retrieve authenticated user profile | Yes |
+| **Locations** | `POST` | `/api/v1/locations/` | Create a new user-saved location | Yes |
+| **Locations** | `GET` | `/api/v1/locations/` | List all saved locations for authenticated user | Yes |
+| **Locations** | `GET` | `/api/v1/locations/{id}` | Retrieve details of a specific saved location | Yes |
+| **Locations** | `PATCH` | `/api/v1/locations/{id}` | Update existing saved location attributes | Yes |
+| **Locations** | `DELETE` | `/api/v1/locations/{id}` | Delete a saved location | Yes |
+| **Trips** | `POST` | `/api/v1/trips/` | Record a new mobility journey | Yes |
+| **Trips** | `GET` | `/api/v1/trips/` | List trips with pagination, date filtering, and sorting | Yes |
+| **Trips** | `GET` | `/api/v1/trips/{id}` | Retrieve details of a single trip | Yes |
+| **Trips** | `PATCH` | `/api/v1/trips/{id}` | Update trip attributes | Yes |
+| **Trips** | `DELETE` | `/api/v1/trips/{id}` | Delete a logged trip | Yes |
+| **Analytics** | `GET` | `/api/v1/analytics/summary` | Aggregate summary (total trips, distance, cost, time) | Yes |
+| **Analytics** | `GET` | `/api/v1/analytics/transport-modes` | Modal split analysis with trip counts and distances | Yes |
+| **Analytics** | `GET` | `/api/v1/analytics/daily-distance` | Daily mobility distance time-series aggregation | Yes |
+| **Analytics** | `GET` | `/api/v1/analytics/outliers` | Statistical speed and distance outlier detection | Yes |
 
-```powershell
+---
+
+## ⚡ Local Quick Start
+
+### 1. Clone & Initialize Virtual Environment
+
+```bash
+git clone https://github.com/SHAW258/citypulse-api.git
+cd citypulse-api
+
 # Create and activate virtual environment
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1   # On Linux/macOS: source .venv/bin/activate
+# On Windows PowerShell:
+.\.venv\Scripts\Activate.ps1
+# On Linux/macOS:
+source .venv/bin/activate
 
-# Install requirements
+# Install dependencies
+pip install --upgrade pip
 pip install -r requirements.txt
-
-# Configure environment file
-Copy-Item .env.example .env     # On Linux/macOS: cp .env.example .env
 ```
 
-### 2. Start MySQL (Docker)
+### 2. Configure Environment Variables
 
-```powershell
-docker compose up -d mysql
+```bash
+# Copy example configuration
+cp .env.example .env
+```
+
+Edit `.env` to configure your database connection:
+```env
+# For Supabase (PostgreSQL)
+DATABASE_URL=postgresql+asyncpg://postgres:[PASSWORD]@aws-0-ap-southeast-2.pooler.supabase.com:5432/postgres
+
+# For Local MySQL
+# MYSQL_HOST=localhost
+# MYSQL_PORT=3306
+# MYSQL_DATABASE=citypulse
+# MYSQL_USERNAME=citypulse_user
+# MYSQL_PASSWORD=citypulse_pass
+
+SECRET_KEY=your-secure-random-secret-key-at-least-32-chars
+ENVIRONMENT=development
+DEBUG=true
 ```
 
 ### 3. Run Migrations & Start Server
 
-```powershell
-# Apply Alembic database migrations
+```bash
+# Run database schema migrations
 alembic upgrade head
 
-# Start Uvicorn development server
+# Start development ASGI server with live-reload
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
-
-### 4. Access Interactive Documentation
 
 Open [http://127.0.0.1:8000/api/v1/docs](http://127.0.0.1:8000/api/v1/docs) in your browser.
 
 ---
 
-## 📡 API Endpoints Overview
+## 🧪 Testing & Code Quality
 
-All v1 routes are mounted under `/api/v1`:
+```bash
+# Run the automated pytest test suite
+pytest
 
-| Domain | Method | Endpoint | Description | Auth Required |
-|---|---|---|---|:---:|
-| **Health** | `GET` | `/health` | Server liveness check | No |
-| **Auth** | `POST` | `/api/v1/auth/register` | Register a new user account | No |
-| **Auth** | `POST` | `/api/v1/auth/login` | Authenticate with credentials (issues access + refresh tokens) | No |
-| **Auth** | `POST` | `/api/v1/auth/refresh` | Rotate refresh token & issue new access token | No |
-| **Auth** | `POST` | `/api/v1/auth/logout` | Revoke active refresh token | Yes |
-| **Auth** | `GET` | `/api/v1/auth/me` | Retrieve profile of authenticated user | Yes |
-| **Locations** | `POST` | `/api/v1/locations/` | Create a new user location | Yes |
-| **Locations** | `GET` | `/api/v1/locations/` | List all locations for authenticated user | Yes |
-| **Locations** | `GET` | `/api/v1/locations/{id}` | Get details of a specific location | Yes |
-| **Locations** | `PATCH` | `/api/v1/locations/{id}` | Update an existing location | Yes |
-| **Locations** | `DELETE` | `/api/v1/locations/{id}` | Delete a location | Yes |
-| **Trips** | `POST` | `/api/v1/trips/` | Log a new mobility journey / trip | Yes |
-| **Trips** | `GET` | `/api/v1/trips/` | List user trips with pagination & filters | Yes |
-| **Trips** | `GET` | `/api/v1/trips/{id}` | Get details of a single trip | Yes |
-| **Trips** | `PATCH` | `/api/v1/trips/{id}` | Update trip attributes | Yes |
-| **Trips** | `DELETE` | `/api/v1/trips/{id}` | Delete a trip record | Yes |
-| **Analytics** | `GET` | `/api/v1/analytics/summary` | Aggregate metrics (total trips, distance, cost, duration) | Yes |
-| **Analytics** | `GET` | `/api/v1/analytics/transport-modes` | Breakdown by transportation mode | Yes |
-| **Analytics** | `GET` | `/api/v1/analytics/daily-distance` | Daily mobility distance time-series | Yes |
-| **Analytics** | `GET` | `/api/v1/analytics/outliers` | Statistical speed and distance outlier detection | Yes |
+# Run tests with verbose output
+pytest -v
+
+# Run code linter
+ruff check .
+
+# Auto-format codebase
+ruff format .
+```
 
 ---
 
-## 🔒 Security Model & Baseline
+## 🚀 Cloud Deployment Guide
 
-- **Argon2id Password Hashing**: State-of-the-art password hashing using `pwdlib[argon2]`.
-- **Rotating Refresh Tokens**: Refresh tokens are stored by unique token ID, rotated on every refresh, and revoked on logout.
-- **Reuse Detection**: Automatic revocation and reuse protection for refresh tokens.
-- **Strict Data Isolation**: Multi-tenant data segregation where every query is strictly constrained to the authenticated user (`user_id`).
-- **Defensive HTTP Headers**: Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, and Permissions-Policy.
-- **Per-IP Rate Throttling**: Sliding window rate limiting middleware to prevent brute force and DDoS attacks.
-- **Strict CORS & Host Whitelist**: Whitelist-based origin and host validation.
+### A. Deploy to Render (Recommended)
+
+1. Connect your repository [`SHAW258/citypulse-api`](https://github.com/SHAW258/citypulse-api) on **[Render Dashboard](https://dashboard.render.com)**.
+2. Select **Web Service** with **Python 3.12** runtime.
+3. Configure Build & Start commands:
+   - **Build Command**: `pip install --upgrade pip && pip install -r requirements.txt`
+   - **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+4. Set Environment Variables:
+   - `DATABASE_URL`: `postgresql+asyncpg://postgres.[PROJECT]:[PASSWORD]@aws-0-[REGION].pooler.supabase.com:5432/postgres`
+   - `SECRET_KEY`: `[YOUR_SECRET_KEY]`
+   - `ENVIRONMENT`: `production`
+   - `DEBUG`: `false`
+
+### B. Deploy to PythonAnywhere
+
+1. Upload repository files into `/home/<username>/citypulse-api`.
+2. Create Python 3.10 virtualenv: `mkvirtualenv --python=python3.10 citypulse-venv && pip install -r requirements.txt`.
+3. In PythonAnywhere **Web** tab, configure WSGI configuration file:
+   ```python
+   import sys, os
+   path = '/home/<username>/citypulse-api'
+   if path not in sys.path:
+       sys.path.insert(0, path)
+   os.chdir(path)
+   from wsgi import application
+   ```
+4. Reload the web app.
 
 ---
 
-## 📁 Project Directory Structure
+## 📁 Repository Structure
 
 ```text
-backend/
+citypulse-api/
 ├── alembic/                      # Database migrations
 │   ├── versions/                 # Revision scripts
 │   └── env.py                    # Async migration runtime environment
@@ -334,32 +390,18 @@ backend/
 │   ├── test_http_security.py     # Middleware & security header tests
 │   ├── test_schemas.py           # Validation schema tests
 │   └── test_security.py          # Password & JWT crypto tests
-├── .env                          # Local environment secrets (ignored by git)
 ├── .env.example                  # Environment configuration template
+├── .gitignore                    # Git exclusions
 ├── alembic.ini                   # Alembic configuration
+├── Dockerfile                    # Containerization definition
 ├── docker-compose.yml            # Local MySQL 8.4 Docker service
+├── LICENSE                       # Proprietary copyright notice
 ├── pyproject.toml                # Project metadata & tool configuration
+├── render.yaml                   # Infrastructure-as-code for Render
 ├── requirements.txt              # Production and development dependencies
-├── SETUP.md                      # Comprehensive setup & installation guide
-└── README.md                     # Project documentation overview
-```
-
----
-
-## 🧪 Testing & Quality Assurance
-
-```powershell
-# Run the complete test suite
-pytest
-
-# Run tests with verbose output
-pytest -v
-
-# Run code linter
-ruff check .
-
-# Format code
-ruff format .
+├── SETUP.md                      # Detailed developer onboarding guide
+├── wsgi.py                       # Synchronous WSGI adapter for standard web hosts
+└── README.md                     # Comprehensive project documentation
 ```
 
 ---
@@ -369,4 +411,3 @@ ruff format .
 Copyright © 2026 SHAW258. All rights reserved.
 
 This project and its source code are **Proprietary and Confidential**. Public viewing of this repository is permitted solely for demonstration, inspection, and portfolio evaluation. Unauthorized copying, cloning for derivation, distribution, reproduction, or commercial deployment without prior written permission from the copyright holder is strictly prohibited. See the [LICENSE](LICENSE) file for complete terms.
-
