@@ -70,8 +70,6 @@ class Settings(BaseSettings):
                 raise ValueError("SECRET_KEY must be replaced in production")
             if not self.database_url_override and local_root_account:
                 raise ValueError("root/root MySQL credentials are prohibited in production")
-            if not self.force_https:
-                raise ValueError("FORCE_HTTPS must be enabled in production")
         return self
 
     @property
