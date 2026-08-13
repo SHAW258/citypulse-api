@@ -56,10 +56,25 @@ class RequestSecurityMiddleware(BaseHTTPMiddleware):
             "Permissions-Policy",
             "geolocation=(), microphone=(), camera=()",
         )
-        response.headers.setdefault(
-            "Content-Security-Policy",
-            "default-src 'none'; frame-ancestors 'none'; base-uri 'none'",
+        is_docs_route = (
+            request.url.path.endswith("/docs")
+            or request.url.path.endswith("/openapi.json")
+            or request.url.path.endswith("/redoc")
         )
+        if is_docs_route:
+            response.headers.setdefault(
+                "Content-Security-Policy",
+                "default-src 'self' https://cdn.jsdelivr.net; "
+                "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
+                "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
+                "img-src 'self' data: https://fastapi.tiangolo.com; "
+                "frame-ancestors 'none'; base-uri 'self'",
+            )
+        else:
+            response.headers.setdefault(
+                "Content-Security-Policy",
+                "default-src 'none'; frame-ancestors 'none'; base-uri 'none'",
+            )
         if self.settings.force_https:
             response.headers.setdefault(
                 "Strict-Transport-Security",
