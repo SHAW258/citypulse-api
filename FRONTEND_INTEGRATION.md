@@ -23,7 +23,6 @@ Welcome to the **CityPulse API** developer integration guide! This guide explain
 | Environment | Base URL | OpenAPI Specification |
 | :--- | :--- | :--- |
 | **Production (Render)** | `https://citypulse-api-tjpr.onrender.com` | `https://citypulse-api-tjpr.onrender.com/api/v1/openapi.json` |
-| **Alternative (PythonAnywhere)** | `https://indrada.pythonanywhere.com` | `https://indrada.pythonanywhere.com/api/v1/openapi.json` |
 | **Local Development** | `http://127.0.0.1:8000` | `http://127.0.0.1:8000/api/v1/openapi.json` |
 
 > 🔒 **CORS Policy**: The production server accepts requests from all origins (`*`) with standard headers (`Authorization`, `Content-Type`). You do not need to configure backend CORS proxies for web apps.

@@ -1,4 +1,4 @@
-"""WSGI entrypoint for PythonAnywhere and WSGI application servers."""
+"""WSGI entrypoint for standard WSGI and uWSGI application servers."""
 
 from __future__ import annotations
 
@@ -104,5 +104,5 @@ class SyncASGIMiddleware:
         return resp_body
 
 
-# PythonAnywhere looks for the 'application' callable
+# Expose the standard WSGI 'application' callable
 application = SyncASGIMiddleware(app)

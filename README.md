@@ -29,7 +29,6 @@
 | Deployment Platform | Status | Interactive Swagger Docs | Health Probe | OpenAPI Spec |
 | :--- | :---: | :--- | :--- | :--- |
 | **Render Production (Supabase)** | 🟢 **Live** | **[Live Swagger UI](https://citypulse-api-tjpr.onrender.com/api/v1/docs)** | `GET` **[/health](https://citypulse-api-tjpr.onrender.com/health)** | **[/openapi.json](https://citypulse-api-tjpr.onrender.com/api/v1/openapi.json)** |
-| **PythonAnywhere WebApp** | 🟢 **Live** | **[PythonAnywhere UI](https://indrada.pythonanywhere.com/api/v1/docs)** | `GET` **[/health](https://indrada.pythonanywhere.com/health)** | **[/openapi.json](https://indrada.pythonanywhere.com/api/v1/openapi.json)** |
 
 ---
 
@@ -54,7 +53,7 @@ The live production Supabase database comes pre-seeded with **160+ realistic mob
 - **Privacy-First Data Segregation**: Strict multi-tenant isolation where all queries, mutations, and analytics are bounded to the authenticated `user_id`.
 - **Advanced Mobility Analytics**: Aggregated journey analytics, transportation mode breakdowns (Walk, Bike, Bus, Train, Metro, Car, Auto, Ride Share), time-series daily distance, and interquartile statistical speed/distance anomaly detection.
 - **Defense-in-Depth Middleware**: Sliding-window IP rate limiting, strict CORS configuration, TrustedHost verification, and hardened security headers (`Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`).
-- **Synchronous WSGI Adapter (`SyncASGIMiddleware`)**: High-performance synchronous runner in [`wsgi.py`](wsgi.py) enabling zero-dependency deployment under standard single-threaded WSGI servers like PythonAnywhere uWSGI.
+- **Synchronous WSGI Adapter (`SyncASGIMiddleware`)**: High-performance synchronous runner in [`wsgi.py`](wsgi.py) enabling zero-dependency deployment under standard single-threaded WSGI and uWSGI servers.
 
 ---
 
@@ -326,21 +325,6 @@ ruff format .
    - `SECRET_KEY`: `[YOUR_SECRET_KEY]`
    - `ENVIRONMENT`: `production`
    - `DEBUG`: `false`
-
-### B. Deploy to PythonAnywhere
-
-1. Upload repository files into `/home/<username>/citypulse-api`.
-2. Create Python 3.10 virtualenv: `mkvirtualenv --python=python3.10 citypulse-venv && pip install -r requirements.txt`.
-3. In PythonAnywhere **Web** tab, configure WSGI configuration file:
-   ```python
-   import sys, os
-   path = '/home/<username>/citypulse-api'
-   if path not in sys.path:
-       sys.path.insert(0, path)
-   os.chdir(path)
-   from wsgi import application
-   ```
-4. Reload the web app.
 
 ---
 
