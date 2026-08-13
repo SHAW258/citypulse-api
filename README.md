@@ -1,27 +1,28 @@
-# CityPulse API
+<div align="center">
 
-> **Privacy-conscious mobility and local-life analytics backend built with modern asynchronous Python.**
+# 🏙️ CityPulse — Privacy-Conscious Mobility & Urban Analytics
 
----
+[![Python](https://img.shields.io/badge/Python-3.14%20%7C%203.12+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.128+-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Uvicorn](https://img.shields.io/badge/Uvicorn-0.40+-499848?style=flat&logo=gunicorn&logoColor=white)](https://www.uvicorn.org/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0+-D71F00?style=flat&logo=sqlalchemy&logoColor=white)](https://www.sqlalchemy.org/)
+[![asyncmy](https://img.shields.io/badge/asyncmy-0.2.10+-005C84?style=flat)](https://github.com/long2ice/asyncmy)
+[![MySQL](https://img.shields.io/badge/MySQL-8.4%20LTS-4479A1?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Docker](https://img.shields.io/badge/Docker-Compose%20v2-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Pydantic](https://img.shields.io/badge/Pydantic-v2.12+-E92063?style=flat&logo=pydantic&logoColor=white)](https://docs.pydantic.dev/)
+[![PyJWT](https://img.shields.io/badge/PyJWT-2.11+-000000?style=flat&logo=jsonwebtokens&logoColor=white)](https://pyjwt.readthedocs.io/)
+[![Argon2](https://img.shields.io/badge/Argon2id-pwdlib-8A2BE2?style=flat)](https://github.com/frankie567/pwdlib)
+[![Pytest](https://img.shields.io/badge/Pytest-9.0+-0A9EDC?style=flat&logo=pytest&logoColor=white)](https://pytest.org/)
+[![Ruff](https://img.shields.io/badge/Ruff-0.14+-D7FF64?style=flat&logo=ruff&logoColor=black)](https://docs.astral.sh/ruff/)
+[![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red?style=flat)](LICENSE)
 
-### 🛠️ Software, Tools & Tech Stack Versions (Quick Reference)
+*An enterprise-grade, privacy-conscious mobility and urban analytics backend with Argon2id authentication, rotating JWT tokens, spatio-temporal location tracking, and statistical outlier detection.*
 
-| Category | Software / Technology | Target / Tested Version | Role & Usage |
-|---|---|---|---|
-| **Runtime** | **Python** | `3.12+` / `3.14.6` | Modern Python asynchronous runtime environment |
-| **API Framework** | **FastAPI** | `^0.128.0` | Asynchronous REST API framework & OpenAPI engine |
-| **ASGI Server** | **Uvicorn** | `^0.40.0` | High-throughput asynchronous HTTP/ASGI server with auto-reload |
-| **Database** | **MySQL Server** | `8.4 LTS` (or `8.0+`) | Relational database storage engine |
-| **Containerization** | **Docker & Compose**| `Compose v2+` | Containerized MySQL 8.4 service orchestration |
-| **ORM Engine** | **SQLAlchemy** | `^2.0.46` | Async 2.0 ORM with mapped types and relationship cascades |
-| **Database Driver** | **asyncmy** | `^0.2.10` | Cython-accelerated asynchronous MySQL protocol driver |
-| **Database Migrations**| **Alembic** | `^1.18.0` | Database schema versioning & asynchronous migration runner |
-| **Data Validation** | **Pydantic v2** | `^2.12.0` | Schema validation, DTOs & `pydantic-settings` environment loader |
-| **Authentication** | **PyJWT** | `^2.11.0` | Cryptographic JSON Web Token (JWT) encode/decode/rotation |
-| **Password Hashing**| **pwdlib [argon2]** | `^0.3.0` | Argon2id non-reversible password hashing |
-| **Testing Suite** | **pytest & pytest-asyncio**| `^9.0.0` / `^1.3.0` | Asynchronous unit, security, and integration testing |
-| **HTTP Test Client**| **HTTPX** | `^0.28.0` | Async HTTP client for test runners |
-| **Linter & Formatter**| **Ruff** | `^0.14.0` | Lightning-fast Python code linting, formatting & rule checks |
+<br/>
+
+[Architecture](#-system-architecture-diagram) • [Database Schema](#-database-schema--er-diagram) • [Getting Started](#-quick-start--setup) • [API Reference](#-api-endpoints-overview) • [Detailed Setup Guide](SETUP.md) • [Tech Stack](#-technology-stack)
+
+</div>
 
 ---
 
