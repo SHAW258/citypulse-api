@@ -1,0 +1,86 @@
+"""Centralized, environment-driven application configuration."""
+
+from functools import lru_cache
+from typing import Literal
+from urllib.parse import quote_plus
+
+from pydantic import Field, SecretStr, field_validator, model_validator
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Settings(BaseSettings):
+    """Settings read from `.env` locally and environment variables in deployment."""
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,
+        extra="ignore",
+    )
+
+    app_name: str = "CityPulse API"
+    environment: Literal["development", "test", "production"] = "development"
+    debug: bool = False
+    api_v1_prefix: str = "/api/v1"
+
+    mysql_host: str = "localhost"
+    mysql_port: int = Field(default=3306, ge=1, le=65535)
+    mysql_database: str = "citypulse"
+    mysql_username: str = "root"
+    mysql_password: SecretStr = SecretStr("root")
+
+    secret_key: SecretStr = Field(min_length=32)
+    jwt_algorithm: Literal["HS256", "HS384", "HS512"] = "HS256"
+    access_token_expire_minutes: int = Field(default=15, ge=5, le=60)
+    refresh_token_expire_days: int = Field(default=7, ge=1, le=30)
+    jwt_issuer: str = "citypulse-api"
+    jwt_audience: str = "citypulse-mobile"
+
+    cors_origins: list[str] = ["http://localhost:3000", "http://10.0.2.2:8000"]
+    allowed_hosts: list[str] = ["localhost", "127.0.0.1", "testserver"]
+    force_https: bool = False
+    max_request_size_bytes: int = Field(default=1_048_576, ge=1_024, le=10_485_760)
+    general_rate_limit_per_minute: int = Field(default=120, ge=10, le=1_000)
+    login_rate_limit_per_minute: int = Field(default=10, ge=3, le=100)
+
+    @field_validator("cors_origins", "allowed_hosts")
+    @classmethod
+    def reject_empty_values(cls, values: list[str]) -> list[str]:
+        if not values or any(not value.strip() for value in values):
+            raise ValueError("must contain at least one non-empty value")
+        return values
+
+    @model_validator(mode="after")
+    def enforce_production_safety(self) -> Settings:
+        insecure_secret = self.secret_key.get_secret_value().startswith("replace-with")
+        local_root_account = (
+            self.mysql_username == "root"
+            and self.mysql_password.get_secret_value() == "root"
+        )
+        if self.environment == "production":
+            if self.debug:
+                raise ValueError("DEBUG must be false in production")
+            if insecure_secret:
+                raise ValueError("SECRET_KEY must be replaced in production")
+            if local_root_account:
+                raise ValueError("root/root MySQL credentials are prohibited in production")
+            if not self.force_https:
+                raise ValueError("FORCE_HTTPS must be enabled in production")
+        return self
+
+    @property
+    def database_url(self) -> str:
+        username = quote_plus(self.mysql_username)
+        password = quote_plus(self.mysql_password.get_secret_value())
+        return (
+            f"mysql+asyncmy://{username}:{password}@{self.mysql_host}:"
+            f"{self.mysql_port}/{self.mysql_database}?charset=utf8mb4"
+        )
+
+
+@lru_cache
+def get_settings() -> Settings:
+    """Return one immutable configuration instance per process."""
+
+    return Settings()
+
