@@ -1,5 +1,7 @@
 """Domain errors translated to HTTP responses at the API boundary."""
 
+from __future__ import annotations
+
 
 class DomainError(Exception):
     """Base class for expected business-rule failures."""

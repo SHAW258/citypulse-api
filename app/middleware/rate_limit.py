@@ -1,5 +1,7 @@
 """Small dependency-free in-memory rate limiter for a single API process."""
 
+from __future__ import annotations
+
 import asyncio
 import time
 from collections import defaultdict, deque

@@ -1,5 +1,7 @@
 """Location business rules, including coordinate privacy controls."""
 
+from __future__ import annotations
+
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.exceptions import NotFoundError, ValidationDomainError

@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from app.models.user import User
 
 
-class LocationCategory(enum.StrEnum):
+class LocationCategory(str, enum.Enum):
     HOME = "home"
     WORK = "work"
     COLLEGE = "college"

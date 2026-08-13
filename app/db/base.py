@@ -1,5 +1,7 @@
 """SQLAlchemy declarative base shared by all persistence models."""
 
+from __future__ import annotations
+
 from sqlalchemy.ext.asyncio import AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase
 

@@ -1,6 +1,13 @@
 """Password and JWT security primitives."""
 
-from datetime import UTC, datetime, timedelta
+from __future__ import annotations
+
+from datetime import datetime, timedelta, timezone
+
+try:
+    from datetime import UTC
+except ImportError:
+    UTC = timezone.utc
 from typing import Any
 from uuid import uuid4
 

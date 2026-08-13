@@ -1,6 +1,13 @@
 """Account lifecycle, token rotation, and authenticated-user resolution."""
 
-from datetime import UTC, datetime
+from __future__ import annotations
+
+from datetime import datetime, timezone
+
+try:
+    from datetime import UTC
+except ImportError:
+    UTC = timezone.utc
 
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession

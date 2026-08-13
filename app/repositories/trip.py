@@ -1,5 +1,7 @@
 """Trip persistence operations scoped to an owner."""
 
+from __future__ import annotations
+
 from datetime import datetime
 
 from sqlalchemy import select

@@ -1,6 +1,13 @@
 """Reusable persistence fields."""
 
-from datetime import UTC, datetime
+from __future__ import annotations
+
+from datetime import datetime, timezone
+
+try:
+    from datetime import UTC
+except ImportError:
+    UTC = timezone.utc
 from uuid import uuid4
 
 from sqlalchemy import String

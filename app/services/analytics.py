@@ -1,5 +1,7 @@
 """User-scoped descriptive analytics ready to feed the Android dashboard."""
 
+from __future__ import annotations
+
 from collections import defaultdict
 from datetime import date, datetime, time, timedelta
 from decimal import ROUND_HALF_UP, Decimal

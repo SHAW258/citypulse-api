@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from app.models.user import User
 
 
-class TransportMode(enum.StrEnum):
+class TransportMode(str, enum.Enum):
     WALK = "walk"
     BIKE = "bike"
     BUS = "bus"

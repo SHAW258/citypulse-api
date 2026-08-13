@@ -1,5 +1,7 @@
 """Location request and response schemas."""
 
+from __future__ import annotations
+
 from datetime import datetime
 from decimal import Decimal
 

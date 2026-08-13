@@ -1,5 +1,7 @@
 """Security headers and lightweight request-level protections."""
 
+from __future__ import annotations
+
 from uuid import uuid4
 
 from fastapi import HTTPException, status

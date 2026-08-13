@@ -1,5 +1,7 @@
 """CityPulse FastAPI application factory and HTTP error boundary."""
 
+from __future__ import annotations
+
 from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError

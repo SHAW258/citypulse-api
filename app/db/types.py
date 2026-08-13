@@ -1,6 +1,13 @@
 """Database types that preserve application-level invariants across MySQL."""
 
-from datetime import UTC, datetime
+from __future__ import annotations
+
+from datetime import datetime, timezone
+
+try:
+    from datetime import UTC
+except ImportError:
+    UTC = timezone.utc
 from typing import Any
 
 from sqlalchemy import DateTime

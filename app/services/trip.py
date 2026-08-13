@@ -1,6 +1,13 @@
 """Trip business rules and ownership-safe CRUD."""
 
-from datetime import UTC, date, datetime, time
+from __future__ import annotations
+
+from datetime import date, datetime, time, timezone
+
+try:
+    from datetime import UTC
+except ImportError:
+    UTC = timezone.utc
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
