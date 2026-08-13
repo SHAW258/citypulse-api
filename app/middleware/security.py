@@ -65,6 +65,7 @@ class RequestSecurityMiddleware(BaseHTTPMiddleware):
             response.headers.setdefault(
                 "Content-Security-Policy",
                 "default-src 'self' https://cdn.jsdelivr.net; "
+                "connect-src 'self' http://localhost:* http://127.0.0.1:* http://10.0.2.2:* ws:; "
                 "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
                 "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
                 "img-src 'self' data: https://fastapi.tiangolo.com; "

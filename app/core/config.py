@@ -36,6 +36,7 @@ class Settings(BaseSettings):
     jwt_issuer: str = "citypulse-api"
     jwt_audience: str = "citypulse-mobile"
 
+    database_url_override: str | None = Field(default=None, validation_alias="DATABASE_URL")
     cors_origins: list[str] = ["http://localhost:3000", "http://10.0.2.2:8000"]
     allowed_hosts: list[str] = ["localhost", "127.0.0.1", "testserver"]
     force_https: bool = False
@@ -61,7 +62,7 @@ class Settings(BaseSettings):
                 raise ValueError("DEBUG must be false in production")
             if insecure_secret:
                 raise ValueError("SECRET_KEY must be replaced in production")
-            if local_root_account:
+            if not self.database_url_override and local_root_account:
                 raise ValueError("root/root MySQL credentials are prohibited in production")
             if not self.force_https:
                 raise ValueError("FORCE_HTTPS must be enabled in production")
@@ -69,6 +70,15 @@ class Settings(BaseSettings):
 
     @property
     def database_url(self) -> str:
+        if self.database_url_override:
+            url = self.database_url_override.strip()
+            # Standardize postgres scheme to asyncpg dialect
+            if url.startswith("postgresql://"):
+                url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
+            elif url.startswith("postgres://"):
+                url = url.replace("postgres://", "postgresql+asyncpg://", 1)
+            return url
+
         username = quote_plus(self.mysql_username)
         password = quote_plus(self.mysql_password.get_secret_value())
         return (
