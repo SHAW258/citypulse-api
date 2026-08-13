@@ -43,4 +43,3 @@ class TripRepository:
     async def delete(self, trip: Trip) -> None:
         await self.session.delete(trip)
         await self.session.flush()
-

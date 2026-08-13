@@ -42,4 +42,3 @@ def client_ip(request: Request) -> str:
     """Use the direct peer only; forwarded headers require explicit proxy configuration."""
 
     return request.client.host if request.client else "unknown"
-

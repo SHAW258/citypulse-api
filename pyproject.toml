@@ -12,4 +12,5 @@ extend-exclude = ["alembic"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
-ignore = ["B008"] # FastAPI's Query/Depends declarations intentionally use callable defaults.
+ignore = ["B008", "E501"] # FastAPI Depends/Query defaults and descriptive OpenAPI example payloads.
+

@@ -62,4 +62,3 @@ class RefreshTokenRepository:
             .values(revoked_at=revoked_at)
         )
         await self.session.execute(statement)
-

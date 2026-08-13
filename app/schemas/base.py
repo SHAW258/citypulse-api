@@ -13,4 +13,3 @@ class ResponseSchema(BaseModel):
     """Enable safe conversion of SQLAlchemy objects into public responses."""
 
     model_config = ConfigDict(from_attributes=True)
-

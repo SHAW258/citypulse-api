@@ -9,4 +9,3 @@ api_router.include_router(auth.router)
 api_router.include_router(locations.router)
 api_router.include_router(trips.router)
 api_router.include_router(analytics.router)
-

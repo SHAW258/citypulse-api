@@ -1,2 +1,1 @@
 """Application-level HTTP protections."""
-

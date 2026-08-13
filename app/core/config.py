@@ -54,8 +54,7 @@ class Settings(BaseSettings):
     def enforce_production_safety(self) -> Settings:
         insecure_secret = self.secret_key.get_secret_value().startswith("replace-with")
         local_root_account = (
-            self.mysql_username == "root"
-            and self.mysql_password.get_secret_value() == "root"
+            self.mysql_username == "root" and self.mysql_password.get_secret_value() == "root"
         )
         if self.environment == "production":
             if self.debug:
@@ -83,4 +82,3 @@ def get_settings() -> Settings:
     """Return one immutable configuration instance per process."""
 
     return Settings()
-

@@ -24,3 +24,6 @@ class AuthorizationError(DomainError):
 class ValidationDomainError(DomainError):
     """A request is structurally valid but violates a business rule."""
 
+
+class RateLimitError(DomainError):
+    """Client request limit has been exceeded."""

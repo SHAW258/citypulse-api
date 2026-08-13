@@ -1,6 +1,5 @@
 """CityPulse FastAPI application factory and HTTP error boundary."""
 
-
 from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
@@ -17,6 +16,7 @@ from app.core.exceptions import (
     ConflictError,
     DomainError,
     NotFoundError,
+    RateLimitError,
     ValidationDomainError,
 )
 from app.middleware.security import RequestSecurityMiddleware
@@ -53,9 +53,7 @@ def create_application() -> FastAPI:
     async def handle_domain_error(_: Request, exc: DomainError) -> JSONResponse:
         status_code = _status_for_domain_error(exc)
         headers = (
-            {"WWW-Authenticate": "Bearer"}
-            if status_code == status.HTTP_401_UNAUTHORIZED
-            else None
+            {"WWW-Authenticate": "Bearer"} if status_code == status.HTTP_401_UNAUTHORIZED else None
         )
         return JSONResponse(status_code=status_code, content={"detail": str(exc)}, headers=headers)
 
@@ -91,6 +89,8 @@ def _status_for_domain_error(exc: DomainError) -> int:
         return status.HTTP_409_CONFLICT
     if isinstance(exc, ValidationDomainError):
         return status.HTTP_422_UNPROCESSABLE_CONTENT
+    if isinstance(exc, RateLimitError):
+        return status.HTTP_429_TOO_MANY_REQUESTS
     return status.HTTP_400_BAD_REQUEST
 
 

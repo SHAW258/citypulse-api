@@ -1,2 +1,1 @@
 """CityPulse application package."""
-

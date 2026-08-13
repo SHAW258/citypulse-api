@@ -34,4 +34,3 @@ class LocationRepository:
     async def delete(self, location: Location) -> None:
         await self.session.delete(location)
         await self.session.flush()
-

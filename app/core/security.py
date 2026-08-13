@@ -110,4 +110,3 @@ def decode_token(*, token: str, expected_type: str, settings: Settings) -> dict[
     if not isinstance(payload.get("sub"), str) or not isinstance(payload.get("jti"), str):
         raise TokenError("Malformed token claims")
     return payload
-
