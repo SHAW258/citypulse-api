@@ -18,7 +18,7 @@
 
 <br/>
 
-[Live API Docs (Render)](#-live-deployments--interactive-docs) • [Pre-Seeded Accounts](#-pre-seeded-demo-credentials) • [Architecture](#-system-architecture) • [Database Schema](#-database-schema--er-diagram) • [API Endpoints](#-api-endpoints-reference) • [Setup Guide](#-local-quick-start) • [Deployment](#-cloud-deployment-guide)
+[Live API Docs (Render)](#-live-deployments--interactive-docs) • [Frontend & Mobile Guide](FRONTEND_INTEGRATION.md) • [Pre-Seeded Accounts](#-pre-seeded-demo-credentials) • [Architecture](#-system-architecture) • [Database Schema](#-database-schema--er-diagram) • [API Endpoints](#-api-endpoints-reference) • [Setup Guide](#-local-quick-start) • [Deployment](#-cloud-deployment-guide)
 
 </div>
 
