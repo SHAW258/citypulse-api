@@ -15,6 +15,17 @@ Welcome to the **CityPulse API** developer integration guide! This guide explain
 7. [Full React / TypeScript Integration Example](#-full-react--typescript-integration-example)
 8. [Mobile Integration Example (React Native / Flutter)](#-mobile-integration-example-react-native--flutter)
 9. [Error Handling & Interceptor Best Practices](#-error-handling--interceptor-best-practices)
+10. [Dedicated Module Guides (Auth, Trips, Locations, Analytics)](#-dedicated-module-deep-dives)
+
+---
+
+### 📦 Dedicated Module Deep Dives
+For granular TypeScript models, full UI components, and field validations by domain:
+- 🔐 **[AUTH_MODULE.md](docs/modules/AUTH_MODULE.md)**: Argon2id auth, rotating JWTs, user profile management.
+- 🚗 **[TRIPS_MODULE.md](docs/modules/TRIPS_MODULE.md)**: Mobility tracking, transport mode filters, journey logging UI.
+- 📍 **[LOCATIONS_MODULE.md](docs/modules/LOCATIONS_MODULE.md)**: Saved places, WGS84 paired coordinates, map pin selector.
+- 📊 **[ANALYTICS_MODULE.md](docs/modules/ANALYTICS_MODULE.md)**: KPIs, modal split charts, daily distance trends, outlier alerts.
+- 🌐 **[Master Index](docs/modules/README.md)**: Architecture overview & universal pagination envelope.
 
 ---
 
